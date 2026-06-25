@@ -9,12 +9,16 @@ export default function Summary({ transactions }) {
   const balance = income + expense;
 
   return (
-    <section>
-      <div className="income">Income: ₦{income.toLocaleString()}</div>
-      <div className="expense">
-        Expense: ₦{Math.abs(expense).toLocaleString()}
+    <section className="summary">
+      <div className="income card">
+        Income <span>₦{income.toLocaleString()}</span>
       </div>
-      <div className="balance">Balance: ₦{balance.toLocaleString()}</div>
+      <div className="expense card">
+        Expense <span>₦{Math.abs(expense).toLocaleString()}</span>
+      </div>
+      <div className="balance card">
+        Balance <span>₦{balance.toLocaleString()}</span>
+      </div>
     </section>
   );
 }
