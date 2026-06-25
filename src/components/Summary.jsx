@@ -6,7 +6,7 @@ export default function Summary({ transactions }) {
       ? (income += transaction.amount)
       : (expense += transaction.amount);
   });
-  const balance = income + expense;
+  let balance = income + expense;
 
   return (
     <section className="summary">
@@ -16,8 +16,10 @@ export default function Summary({ transactions }) {
       <div className="expense card">
         Expense <span>₦{Math.abs(expense).toLocaleString()}</span>
       </div>
-      <div className="balance card">
-        Balance <span>₦{balance.toLocaleString()}</span>
+      <div
+        className={`card ${balance == 0 ? "balance" : balance > 0 ? "income" : "expense"}`}
+      >
+        Balance <span>₦{Math.abs(balance).toLocaleString()}</span>
       </div>
     </section>
   );
