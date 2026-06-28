@@ -19,9 +19,18 @@ function App() {
 
   function addTransaction() {
     if (description.trim() === "" || amount === "") return;
-
+    const date = `${new Date().toLocaleString("en-NG", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })}`;
     const newTransaction = {
       id: Date.now(),
+      date: date,
       description: description.trim(),
       amount: parseFloat(amount),
     };
@@ -29,6 +38,7 @@ function App() {
       ...prevTransactions,
       newTransaction,
     ]);
+    console.log(transactions);
     setDescription("");
     setAmount("");
   }

@@ -1,5 +1,4 @@
 export default function TransactionList({ transactions, deleteTransaction }) {
-  const date = new Date().toDateString();
   return (
     <section>
       <h2 className="history">Transaction History</h2>
@@ -9,6 +8,7 @@ export default function TransactionList({ transactions, deleteTransaction }) {
         ) : (
           transactions.map((transaction) => (
             <li
+              key={transaction.id}
               className={`transaction-item ${
                 transaction.amount > 0 ? "income" : "expense"
               }`}
@@ -16,7 +16,7 @@ export default function TransactionList({ transactions, deleteTransaction }) {
               <div className="transaction-description">
                 {transaction.description}{" "}
                 <span>
-                  <i>{date}</i>
+                  <i>{transaction.date ? transaction.date : "No Date"}</i>
                 </span>
               </div>
 

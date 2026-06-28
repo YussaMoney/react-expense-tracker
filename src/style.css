@@ -1,7 +1,7 @@
 :root {
   --dark: rgb(24, 20, 20);
   --red: rgb(234, 0, 0);
-  --green: rgb(0, 164, 0);
+  --green: #00a400;
   --blue: rgb(0, 0, 224);
   --light: #f8f9fd;
 }
@@ -97,27 +97,62 @@ form button:active {
   gap: 1.5rem;
 }
 
-.card {
-  background: white;
-  flex: 1;
-  min-width: 180px;
-  padding: 1.5rem;
+.cardbox {
+  display: flex;
+  align-items: center;
   border-radius: 16px;
+  min-width: 230px;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.icon-wrapper {
+  width: auto;
+}
+
+.icon {
+  margin: 0 10px;
+  width: 60px;
+  height: 60px;
+  stroke-width: 1.25;
+  padding: 15px;
+  border-radius: 50px;
+}
+
+.trend-up {
+  color: var(--green);
+  background: rgb(231, 250, 231);
+  box-shadow: 0px 0px 6px -1px var(--green);
+}
+
+.trend-down {
+  color: var(--red);
+  background: rgb(242, 206, 206);
+  box-shadow: 0px 0px 6px -1px var(--red);
+}
+
+.wallet {
+  color: var(--blue);
+  background: rgb(170, 170, 255);
+  box-shadow: 0px 0px 6px -1px var(--blue);
+}
+
+.card {
+  margin: 0 10px;
 }
 
 .card span {
   display: block;
   margin-top: 0.2rem;
   color: var(--dark);
-  font-size: 1.8rem;
+  font-size: 130%;
 }
 
 .income {
-  box-shadow: 0px 0px 10px -5px var(--green);
-  border-inline-start: 4px solid var(--green);
   color: var(--green);
   font-weight: bold;
-  font-size: 1.2rem;
+  box-shadow: 0px 0px 10px -5px var(--green);
+  border-inline-start: 4px solid var(--green);
 }
 
 .expense {
@@ -125,7 +160,6 @@ form button:active {
   border-inline-start: 4px solid var(--red);
   color: var(--red);
   font-weight: bold;
-  font-size: 1.2rem;
 }
 
 .balance {
@@ -133,7 +167,6 @@ form button:active {
   border-inline-start: 4px solid var(--blue);
   color: var(--blue);
   font-weight: bold;
-  font-size: 1.2rem;
 }
 
 .history {
@@ -157,6 +190,12 @@ form button:active {
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0px 10px 10px -5px #cff0ff;
+  transition: all 0.2s ease;
+}
+
+.transaction-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 15px 20px -10px #cff0ff;
 }
 
 .transaction-item.income {
