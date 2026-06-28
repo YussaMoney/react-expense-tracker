@@ -10,7 +10,7 @@ A simple yet functional expense management application built with **React** and 
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Fast Performance**: Built with Vite for instant HMR (Hot Module Replacement) and lightning-fast builds
 
-## 🎮 Live Demo
+## 🌐 Live Demo
 
 [Check it live here](https://yussa-reactexpensetracker.vercel.app/)
 
