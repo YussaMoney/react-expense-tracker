@@ -1,6 +1,6 @@
 # 💰 React Expense Tracker
 
-A simple yet functional expense management application built with **React** and **Vite**. It lets users add and remove transactions, view a summary of their spending, and keep their data saved in the browser using localStorage for a seamless experience. An **expense** amount is written with a minus sign "-", denoting that this specific transaction is an expense.
+A simple yet functional expense management application built with **React** and **Vite**. It lets users add and remove transactions, view a summary of their spending, and keep their data saved in the browser using localStorage for a seamless experience. An **expense** amount is written with a minus sign "-", denoting that this specific transaction is an expense, without the minus sign "-" transaction will be counted as income.
 
 ## ✨ Features
 
