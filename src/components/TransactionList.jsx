@@ -1,10 +1,20 @@
-export default function TransactionList({ transactions, deleteTransaction }) {
+export default function TransactionList({
+  transactions,
+  deleteTransaction,
+  handleEdit,
+}) {
   return (
     <section>
       <h2 className="history">Transaction History</h2>
       <ul className="transaction-list">
         {transactions.length === 0 ? (
-          <p>No transaction yet!</p>
+          <p>
+            📄 <br />
+            <br />
+            No transactions yet!.
+            <br />
+            <br /> Start by adding your first transaction.
+          </p>
         ) : (
           transactions.map((transaction) => (
             <li
@@ -14,18 +24,29 @@ export default function TransactionList({ transactions, deleteTransaction }) {
               }`}
             >
               <div className="transaction-description">
-                {transaction.description}{" "}
-                <span>
+                <div className="description-title">
+                  {transaction.description}{" "}
+                </div>
+                <div className="description-date">
                   <i>{transaction.date ? transaction.date : "No Date"}</i>
-                </span>
+                </div>
               </div>
 
-              <div className="amountWithDeletBtn">
+              <div className="editBtnWithDeletBtn">
                 <div className="transaction-amount">
                   ₦{Math.abs(transaction.amount).toLocaleString()}
                 </div>
                 <button
-                  className="delete-btn"
+                  type="button"
+                  className="button edit-btn"
+                  title="Edit Transaction"
+                  onClick={() => handleEdit(transaction)}
+                >
+                  ✏️
+                </button>
+                <button
+                  title="Delete Transaction"
+                  className="button delete-btn"
                   onClick={() => deleteTransaction(transaction.id)}
                 >
                   ✕
