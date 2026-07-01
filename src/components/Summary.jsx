@@ -1,4 +1,4 @@
-import { TrendingDown, TrendingUp, Wallet } from "lucide-react";
+import { ReceiptText, TrendingDown, TrendingUp, Wallet } from "lucide-react";
 
 export default function Summary({ transactions }) {
   let income = 0;
@@ -38,6 +38,14 @@ export default function Summary({ transactions }) {
         </div>
         <div className="card">
           Balance <span>₦{Math.abs(balance).toLocaleString()}</span>
+        </div>
+      </div>
+      <div className="cardbox total-transaction">
+        <div className="icon-wrapper">
+          <ReceiptText className="icon receipt-text" />
+        </div>
+        <div className="card">
+          Transactions <span>{transactions.length}</span>
         </div>
       </div>
     </section>

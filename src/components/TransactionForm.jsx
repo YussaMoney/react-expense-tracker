@@ -4,6 +4,8 @@ export default function TransactionForm({
   setDescription,
   setAmount,
   addTransaction,
+  editingTransaction,
+  updateTransaction,
 }) {
   return (
     <form>
@@ -13,6 +15,7 @@ export default function TransactionForm({
         id="desc"
         placeholder="Description"
         value={description}
+        required
         onChange={(e) => setDescription(e.target.value)}
       />
 
@@ -22,10 +25,14 @@ export default function TransactionForm({
         id="amount"
         placeholder="Amount"
         value={amount}
+        required
         onChange={(e) => setAmount(e.target.value)}
       />
-      <button type="button" onClick={addTransaction}>
-        Add Transaction
+      <button
+        type="button"
+        onClick={editingTransaction ? updateTransaction : addTransaction}
+      >
+        {editingTransaction ? "Update Transaction" : "Add Transaction"}
       </button>
     </form>
   );
