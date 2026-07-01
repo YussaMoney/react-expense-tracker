@@ -12,6 +12,7 @@ function App() {
 
     return savedTransactions ? JSON.parse(savedTransactions) : [];
   });
+  const [editingTransaction, setEditingTransaction] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -47,10 +48,39 @@ function App() {
     setTransactions(transactions.filter((item) => item.id !== id));
   }
 
+  function updateTransaction() {
+    setTransactions(
+      transactions.map((transaction) => {
+        if (transaction.id === editingTransaction.id) {
+          return {
+            ...transaction,
+            description: description.trim(),
+            amount: parseFloat(amount),
+          };
+        }
+
+        return transaction;
+      }),
+    );
+
+    setDescription("");
+    setAmount("");
+    setEditingTransaction(null);
+  }
+
+  function handleEdit(transaction) {
+    setDescription(transaction.description);
+    setAmount(transaction.amount.toString());
+    setEditingTransaction(transaction);
+  }
+
   return (
     <div className="container">
       <header>
-        <h1 className="heading">Expense Tracker</h1>
+        <h1 className="heading">💰 Expense Tracker</h1>
+        <h3 className="heading-footer">
+          Manage your income and expenses effortlessly.
+        </h3>
       </header>
 
       <main>
@@ -60,11 +90,14 @@ function App() {
           setAmount={setAmount}
           description={description}
           amount={amount}
+          editingTransaction={editingTransaction}
+          updateTransaction={updateTransaction}
         />
         <Summary transactions={transactions} />
         <TransactionList
           transactions={transactions}
           deleteTransaction={deleteTransaction}
+          handleEdit={handleEdit}
         />
       </main>
     </div>
