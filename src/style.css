@@ -196,6 +196,21 @@ form button:active {
   color: var(--dark);
 }
 
+.categoryWithDesc {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.transaction-category {
+  border: none;
+  font-size: 30px;
+  width: auto;
+  height: auto;
+  padding: 4px 6px 12px 6px;
+  border-radius: 50%;
+}
+
 .transaction-list {
   list-style: none;
   display: flex;
@@ -248,10 +263,12 @@ form button:active {
 .button {
   border: none;
   color: white;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  text-align: center;
   cursor: pointer;
+  font-weight: bold;
   transition: all 0.2s ease;
 }
 
@@ -264,8 +281,9 @@ form button:active {
 }
 
 .delete-btn:hover {
+  color: whitesmoke;
   transform: scale(1.1);
-  background: #dc2626;
+  background: #cc2525;
 }
 
 .delete-btn:active {
@@ -273,8 +291,9 @@ form button:active {
 }
 
 .edit-btn:hover {
+  color: whitesmoke;
   transform: scale(1.1);
-  background: #3b82f6;
+  background: #4172c2;
 }
 
 .edit-btn:active {

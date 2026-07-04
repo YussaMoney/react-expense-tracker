@@ -1,8 +1,22 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 export default function TransactionList({
   transactions,
   deleteTransaction,
   handleEdit,
 }) {
+  const categoryIcons = {
+    Food: "🍔",
+    Drink: "🍺",
+    Transport: "🚌",
+    Bills: "💡",
+    Salary: "💼",
+    Shopping: "🛍️",
+    Health: "🏥",
+    Entertainment: "🎮",
+    Education: "📚",
+    Others: "📦",
+  };
   return (
     <section>
       <h2 className="history">Transaction History</h2>
@@ -23,12 +37,19 @@ export default function TransactionList({
                 transaction.amount > 0 ? "income" : "expense"
               }`}
             >
-              <div className="transaction-description">
-                <div className="description-title">
-                  {transaction.description}{" "}
+              <div className="categoryWithDesc">
+                <div
+                  className={`transaction-category ${transaction.amount > 0 ? "trend-up" : "trend-down"}`}
+                >
+                  {categoryIcons[transaction.category]}
                 </div>
-                <div className="description-date">
-                  <i>{transaction.date ? transaction.date : "No Date"}</i>
+                <div className="transaction-description">
+                  <div className="description-title">
+                    {transaction.description}{" "}
+                  </div>
+                  <div className="description-date">
+                    <i>{transaction.date ? transaction.date : "No Date"}</i>
+                  </div>
                 </div>
               </div>
 
@@ -42,14 +63,17 @@ export default function TransactionList({
                   title="Edit Transaction"
                   onClick={() => handleEdit(transaction)}
                 >
-                  ✏️
+                  <FontAwesomeIcon />
+                  <FontAwesomeIcon icon={faPen} size="xl" />
                 </button>
                 <button
                   title="Delete Transaction"
                   className="button delete-btn"
-                  onClick={() => deleteTransaction(transaction.id)}
+                  onClick={() => {
+                    deleteTransaction(transaction.id);
+                  }}
                 >
-                  ✕
+                  <FontAwesomeIcon icon={faTrash} size="xl" />
                 </button>
               </div>
             </li>
