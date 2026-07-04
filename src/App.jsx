@@ -7,6 +7,7 @@ import TransactionForm from "./components/TransactionForm";
 function App() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("Others");
   const [transactions, setTransactions] = useState(() => {
     const savedTransactions = localStorage.getItem("transactions");
 
@@ -32,8 +33,9 @@ function App() {
     const newTransaction = {
       id: Date.now(),
       date: date,
-      description: description.trim(),
+      description: `${description.trim().at(0).toUpperCase()}${description.trim().slice(1).toLowerCase()}`,
       amount: parseFloat(amount),
+      category: category,
     };
     setTransactions((prevTransactions) => [
       ...prevTransactions,
@@ -42,6 +44,7 @@ function App() {
     console.log(transactions);
     setDescription("");
     setAmount("");
+    setCategory("Others");
   }
 
   function deleteTransaction(id) {
@@ -54,8 +57,9 @@ function App() {
         if (transaction.id === editingTransaction.id) {
           return {
             ...transaction,
-            description: description.trim(),
+            description: `${description.trim().at(0).toUpperCase()}${description.trim().slice(1).toLowerCase()}`,
             amount: parseFloat(amount),
+            category: category,
           };
         }
 
@@ -65,12 +69,14 @@ function App() {
 
     setDescription("");
     setAmount("");
+    setCategory("Others");
     setEditingTransaction(null);
   }
 
   function handleEdit(transaction) {
     setDescription(transaction.description);
     setAmount(transaction.amount.toString());
+    setCategory(transaction.category);
     setEditingTransaction(transaction);
   }
 
@@ -90,6 +96,8 @@ function App() {
           setAmount={setAmount}
           description={description}
           amount={amount}
+          category={category}
+          setCategory={setCategory}
           editingTransaction={editingTransaction}
           updateTransaction={updateTransaction}
         />

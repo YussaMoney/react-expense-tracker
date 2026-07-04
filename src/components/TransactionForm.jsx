@@ -3,6 +3,8 @@ export default function TransactionForm({
   amount,
   setDescription,
   setAmount,
+  category,
+  setCategory,
   addTransaction,
   editingTransaction,
   updateTransaction,
@@ -28,6 +30,18 @@ export default function TransactionForm({
         required
         onChange={(e) => setAmount(e.target.value)}
       />
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="Others">Others</option>
+        <option value="Food">Food</option>
+        <option value="Drink">Drink</option>
+        <option value="Transport">Transport</option>
+        <option value="Salary">Salary</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Bills">Bills</option>
+        <option value="Health">Health</option>
+        <option value="Education">Education</option>
+        <option value="Entertainment">Entertainment</option>
+      </select>
       <button
         type="button"
         onClick={editingTransaction ? updateTransaction : addTransaction}
