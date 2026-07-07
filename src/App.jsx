@@ -3,11 +3,13 @@ import "../src/style.css";
 import TransactionList from "./components/TransactionList";
 import Summary from "./components/Summary";
 import TransactionForm from "./components/TransactionForm";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("Others");
+  const [search, setSearch] = useState("");
   const [transactions, setTransactions] = useState(() => {
     const savedTransactions = localStorage.getItem("transactions");
 
@@ -101,6 +103,7 @@ function App() {
           editingTransaction={editingTransaction}
           updateTransaction={updateTransaction}
         />
+        <SearchBar search={search} setSearch={setSearch} />
         <Summary transactions={transactions} />
         <TransactionList
           transactions={transactions}
