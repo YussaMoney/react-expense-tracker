@@ -82,6 +82,11 @@ function App() {
     setEditingTransaction(transaction);
   }
 
+  const filteredTransactions = transactions.filter((transaction) => {
+    // if (search.trim === "") return;
+    return transaction.description.toLowerCase().includes(search.toLowerCase());
+  });
+
   return (
     <div className="container">
       <header>
@@ -106,7 +111,7 @@ function App() {
         <SearchBar search={search} setSearch={setSearch} />
         <Summary transactions={transactions} />
         <TransactionList
-          transactions={transactions}
+          transactions={filteredTransactions}
           deleteTransaction={deleteTransaction}
           handleEdit={handleEdit}
         />
