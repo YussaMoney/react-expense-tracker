@@ -5,6 +5,7 @@ import Summary from "./components/Summary";
 import TransactionForm from "./components/TransactionForm";
 import SearchBar from "./components/SearchBar";
 import CategoryFilter from "./components/CategoryFilter";
+import SortedDropdown from "./components/SortedDropdown";
 
 function App() {
   const [description, setDescription] = useState("");
@@ -12,6 +13,7 @@ function App() {
   const [category, setCategory] = useState("Others");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortBy, setSortBy] = useState("Newest");
   const [transactions, setTransactions] = useState(() => {
     const savedTransactions = localStorage.getItem("transactions");
 
@@ -24,9 +26,14 @@ function App() {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
-  function addTransaction() {
-    if (description.trim() === "" || amount === "") return;
-    const date = `${new Date().toLocaleString("en-NG", {
+  function formatDescription(text) {
+    const trimmed = text.trim();
+
+    return trimmed.at(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+  }
+
+  function formatDate() {
+    return `${new Date().toLocaleString("en-NG", {
       weekday: "short",
       day: "numeric",
       month: "short",
@@ -35,36 +42,46 @@ function App() {
       minute: "2-digit",
       hour12: true,
     })}`;
-    const newTransaction = {
-      id: Date.now(),
-      date: date,
-      description: `${description.trim().at(0).toUpperCase()}${description.trim().slice(1).toLowerCase()}`,
-      amount: parseFloat(amount),
-      category: category,
-    };
-    setTransactions((prevTransactions) => [
-      ...prevTransactions,
-      newTransaction,
-    ]);
-    console.log(transactions);
+  }
+
+  function resetForm() {
     setDescription("");
     setAmount("");
     setCategory("Others");
   }
 
+  function addTransaction() {
+    if (description.trim() === "" || amount === "") return;
+    const date = formatDate();
+    const newTransaction = {
+      id: Date.now(),
+      date,
+      description: formatDescription(description),
+      amount: parseFloat(amount),
+      category,
+    };
+    setTransactions((prevTransactions) => [
+      ...prevTransactions,
+      newTransaction,
+    ]);
+    resetForm();
+  }
+
   function deleteTransaction(id) {
-    setTransactions(transactions.filter((item) => item.id !== id));
+    setTransactions((prevTransactions) =>
+      prevTransactions.filter((transaction) => transaction.id !== id),
+    );
   }
 
   function updateTransaction() {
-    setTransactions(
-      transactions.map((transaction) => {
+    setTransactions((prevTransactions) =>
+      prevTransactions.map((transaction) => {
         if (transaction.id === editingTransaction.id) {
           return {
             ...transaction,
-            description: `${description.trim().at(0).toUpperCase()}${description.trim().slice(1).toLowerCase()}`,
+            description: formatDescription(description),
             amount: parseFloat(amount),
-            category: category,
+            category,
           };
         }
 
@@ -72,9 +89,7 @@ function App() {
       }),
     );
 
-    setDescription("");
-    setAmount("");
-    setCategory("Others");
+    resetForm();
     setEditingTransaction(null);
   }
 
@@ -95,6 +110,31 @@ function App() {
 
     return matchesSearch && matchesCategory;
   });
+
+  const sortedDropdown = [...filteredTransactions];
+  switch (sortBy) {
+    case "Newest":
+      sortedDropdown.sort((a, b) => b.id - a.id);
+      break;
+    case "Oldest":
+      sortedDropdown.sort((a, b) => a.id - b.id);
+      break;
+    case "Highest":
+      sortedDropdown.sort((a, b) => Math.abs(b.amount) - Math.abs(a.amount));
+      break;
+    case "Lowest":
+      sortedDropdown.sort((a, b) => Math.abs(a.amount) - Math.abs(b.amount));
+      break;
+    case "A-Z":
+      sortedDropdown.sort((a, b) => a.description.localeCompare(b.description));
+      break;
+    case "Z-A":
+      sortedDropdown.sort((a, b) => b.description.localeCompare(a.description));
+      break;
+
+    default:
+      break;
+  }
 
   return (
     <div className="container">
@@ -123,8 +163,9 @@ function App() {
           setSelectedCategory={setSelectedCategory}
         />
         <Summary transactions={transactions} />
+        <SortedDropdown sortBy={sortBy} setSortBy={setSortBy} />
         <TransactionList
-          transactions={filteredTransactions}
+          transactions={sortedDropdown}
           totalTransactions={transactions.length}
           deleteTransaction={deleteTransaction}
           handleEdit={handleEdit}
