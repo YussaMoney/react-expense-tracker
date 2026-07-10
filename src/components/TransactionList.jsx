@@ -69,7 +69,10 @@ export default function TransactionList({
                   title="Delete Transaction"
                   className="button delete-btn"
                   onClick={() => {
-                    deleteTransaction(transaction.id);
+                    const confirmed = window.confirm(
+                      "Are you sure you want to delete this transaction?",
+                    );
+                    if (confirmed) deleteTransaction(transaction.id);
                   }}
                 >
                   <FontAwesomeIcon icon={faTrash} size="xl" />
