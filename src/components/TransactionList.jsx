@@ -1,33 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import categoryIcons from "../data/categoryIcons";
 export default function TransactionList({
   transactions,
   deleteTransaction,
   handleEdit,
+  totalTransactions,
 }) {
-  const categoryIcons = {
-    Food: "🍔",
-    Drink: "🍺",
-    Transport: "🚌",
-    Bills: "💡",
-    Salary: "💼",
-    Shopping: "🛍️",
-    Health: "🏥",
-    Entertainment: "🎮",
-    Education: "📚",
-    Others: "📦",
-  };
   return (
     <section>
       <h2 className="history">Transaction History</h2>
       <ul className="transaction-list">
-        {transactions.length === 0 ? (
+        {totalTransactions === 0 ? (
           <p>
             📄 <br />
             <br />
             No transactions yet!.
             <br />
             <br /> Start by adding your first transaction.
+          </p>
+        ) : transactions.length === 0 ? (
+          <p>
+            🔍 <br />
+            <br />
+            No transactions found.
+            <br />
+            <br />
+            Try another search term.
           </p>
         ) : (
           transactions.map((transaction) => (

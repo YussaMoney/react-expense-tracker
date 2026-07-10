@@ -1,3 +1,5 @@
+import categories from "../data/categories";
+
 export default function TransactionForm({
   description,
   amount,
@@ -31,16 +33,11 @@ export default function TransactionForm({
         onChange={(e) => setAmount(e.target.value)}
       />
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="Others">Others</option>
-        <option value="Food">Food</option>
-        <option value="Drink">Drink</option>
-        <option value="Transport">Transport</option>
-        <option value="Salary">Salary</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Bills">Bills</option>
-        <option value="Health">Health</option>
-        <option value="Education">Education</option>
-        <option value="Entertainment">Entertainment</option>
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
       </select>
       <button
         type="button"

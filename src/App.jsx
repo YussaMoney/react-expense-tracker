@@ -4,18 +4,21 @@ import TransactionList from "./components/TransactionList";
 import Summary from "./components/Summary";
 import TransactionForm from "./components/TransactionForm";
 import SearchBar from "./components/SearchBar";
+import CategoryFilter from "./components/CategoryFilter";
 
 function App() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("Others");
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [transactions, setTransactions] = useState(() => {
     const savedTransactions = localStorage.getItem("transactions");
 
     return savedTransactions ? JSON.parse(savedTransactions) : [];
   });
   const [editingTransaction, setEditingTransaction] = useState(null);
+  const normalizedSearch = search.trim().toLowerCase();
 
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -83,8 +86,14 @@ function App() {
   }
 
   const filteredTransactions = transactions.filter((transaction) => {
-    // if (search.trim === "") return;
-    return transaction.description.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = transaction.description
+      .toLowerCase()
+      .includes(normalizedSearch);
+
+    const matchesCategory =
+      selectedCategory === "All" || transaction.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -109,9 +118,14 @@ function App() {
           updateTransaction={updateTransaction}
         />
         <SearchBar search={search} setSearch={setSearch} />
+        <CategoryFilter
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
         <Summary transactions={transactions} />
         <TransactionList
           transactions={filteredTransactions}
+          totalTransactions={transactions.length}
           deleteTransaction={deleteTransaction}
           handleEdit={handleEdit}
         />
