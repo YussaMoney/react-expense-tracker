@@ -6,6 +6,8 @@ import TransactionForm from "./components/TransactionForm";
 import SearchBar from "./components/SearchBar";
 import CategoryFilter from "./components/CategoryFilter";
 import SortedDropdown from "./components/SortedDropdown";
+import formatDescription from "./utils/formatDescription";
+import formatDate from "./utils/formatDate";
 
 function App() {
   const [description, setDescription] = useState("");
@@ -25,24 +27,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
-
-  function formatDescription(text) {
-    const trimmed = text.trim();
-
-    return trimmed.at(0).toUpperCase() + trimmed.slice(1).toLowerCase();
-  }
-
-  function formatDate() {
-    return `${new Date().toLocaleString("en-NG", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    })}`;
-  }
 
   function resetForm() {
     setDescription("");
