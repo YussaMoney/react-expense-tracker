@@ -1,5 +1,4 @@
 import categories from "../data/categories";
-
 export default function TransactionForm({
   description,
   amount,

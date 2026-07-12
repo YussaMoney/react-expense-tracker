@@ -8,6 +8,7 @@ import CategoryFilter from "./components/CategoryFilter";
 import SortedDropdown from "./components/SortedDropdown";
 import formatDescription from "./utils/formatDescription";
 import formatDate from "./utils/formatDate";
+import toast from "react-hot-toast";
 
 function App() {
   const [description, setDescription] = useState("");
@@ -35,7 +36,10 @@ function App() {
   }
 
   function addTransaction() {
-    if (description.trim() === "" || amount === "") return;
+    if (description.trim() === "" || amount === "") {
+      toast.error("Please enter both description and amount.");
+      return;
+    }
     const date = formatDate();
     const newTransaction = {
       id: Date.now(),
@@ -48,6 +52,7 @@ function App() {
       ...prevTransactions,
       newTransaction,
     ]);
+    toast.success("Transaction Added Successfully!");
     resetForm();
   }
 
@@ -55,6 +60,7 @@ function App() {
     setTransactions((prevTransactions) =>
       prevTransactions.filter((transaction) => transaction.id !== id),
     );
+    toast.success("Transaction Deleted Successfully!");
   }
 
   function updateTransaction() {
@@ -72,7 +78,7 @@ function App() {
         return transaction;
       }),
     );
-
+    toast.success("Transaction Updated Successfully!");
     resetForm();
     setEditingTransaction(null);
   }
