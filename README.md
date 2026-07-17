@@ -1,14 +1,23 @@
 # 💰 React Expense Tracker
 
-A simple yet functional expense management application built with **React** and **Vite**. It lets users add and remove transactions, view a summary of their spending, and keep their data saved in the browser using localStorage for a seamless experience. An **expense** amount is written with a minus sign "-", denoting that this specific transaction is an expense, without the minus sign "-" transaction will be counted as income.
+A lightweight React + Vite expense tracker for managing income and spending in one place. Transactions are stored in the browser with `localStorage`, so entries remain available after refresh.
 
 ## ✨ Features
 
-- **Add & Track Expenses**: Quickly log your spending with categories and dates
-- **View Expense Summary**: Get an at-a-glance overview of your expenses
-- **Categorize Spending**: Organize expenses by category for better insights
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Fast Performance**: Built with Vite for instant HMR (Hot Module Replacement) and lightning-fast builds
+- Add, edit, and delete transactions
+- Track income and expenses with a live summary
+- Filter transactions by category
+- Search transactions by description
+- Sort by newest, oldest, highest amount, lowest amount, or alphabetically
+- Responsive layout for desktop and mobile screens
+- Animated transaction list and polished UI feedback
+
+## 💡 Amount Behavior
+
+- Use a positive amount for income
+- Use a negative amount for expense
+
+The app automatically shows the expense total as a positive number in the summary cards while keeping the transaction logic intact.
 
 ## 🌐 Live Demo
 
@@ -44,79 +53,59 @@ npm install
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+4. Open the app in your browser at `http://localhost:5173`
 
 ## 📦 Available Scripts
 
-- `npm run dev` — Start the development server with HMR
-- `npm run build` — Create a production-ready build
+- `npm run dev` — Start the local Vite development server
+- `npm run build` — Create a production build
 - `npm run preview` — Preview the production build locally
-- `npm run lint` — Run ESLint to check code quality
+- `npm run lint` — Run ESLint across the project
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: React 19.2+
-- **Build Tool**: Vite 8.0+
-- **Styling**: HTML & CSS
-- **Linting**: ESLint with React plugin support
-- **Module Type**: ES Modules
+- React 19
+- Vite 8
+- Framer Motion
+- Font Awesome Icons
+- Lucide React
+- React Hot Toast
+- ESLint
 
 ## 📁 Project Structure
 
 ```text
 react-expense-tracker/
-├── public/                  # Static assets served by the app
-├── src/                     # Source files
-│   ├── assets/              # Images and other static files
-│   ├── components/          # Reusable React components
-│   ├── App.jsx              # Main application component
-│   ├── main.jsx             # Application entry point
-│   └── style.css            # Global styling
-├── index.html               # HTML template
-├── package.json             # Project dependencies and scripts
-├── vite.config.js           # Vite configuration
-├── eslint.config.js         # ESLint rules
+├── public/                  # Static assets
+├── src/
+│   ├── assets/              # Static images and shared assets
+│   ├── components/          # UI components
+│   ├── data/                # Categories, icons, and motion variants
+│   ├── utils/               # Formatting helpers
+│   ├── App.jsx              # Main application logic
+│   └── style.css            # Global styles
+├── index.html               # HTML entry file
+├── package.json             # Dependencies and scripts
+├── vite.config.js           # Vite config
 └── README.md                # Project documentation
 ```
 
-## 🎯 Future Enhancements
+## 🤝 Contributing
 
-- [ ] Data persistence with local storage
-- [ ] Export expenses as CSV/PDF
-- [ ] Monthly budget tracking
-- [ ] Multiple currency support
-- [ ] Dark mode toggle
-- [ ] Expense filtering & sorting
-- [ ] Authentication & cloud sync
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+Contributions are welcome. If you would like to improve the app, feel free to open an issue or submit a pull request.
 
 ## 👤 Author
 
 **Azeez Yusuf O.**
 
-- 🐙 GitHub: [@YussaMoney](https://github.com/YussaMoney)
-- 🐦 Twitter: [@YussaMoney](https://x.com/0xyussa)
-- 💼 LinkedIn: [@YussaMoney](https://www.linkedin.com/in/yussamoney)
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-
-- Report bugs by opening an issue
-- Suggest new features
-- Submit pull requests with improvements
-
-## 🌟 Show Your Support
-
-If you like this project, please give it a ⭐️ on GitHub!
+- GitHub: [@YussaMoney](https://github.com/YussaMoney)
+- X: [@YussaMoney](https://x.com/0xyussa)
+- LinkedIn: [@YussaMoney](https://www.linkedin.com/in/yussamoney)
 
 ## 📧 Contact
 
-For questions or feedback, reach out via GitHub Issues or connect with [@YussaMoney](https://github.com/YussaMoney) and WhatsApp: [@Yussassiph](https://wa.me/2348078773063).
+For questions or feedback, open a GitHub issue or connect via WhatsApp: [@Yussassiph](https://wa.me/2348078773063).
 
 ---
 
-**Built with ❤️ using React & Vite**
+Built with ❤️ using React and Vite.
