@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
-import categoryIcons from "../data/categoryIcons";
+// import categoryIcons from "../data/categoryIcons";
 import { transactionVariants, listVariants } from "../data/variantsMotion";
+import categories from "../data/categories";
 export default function TransactionList({
   transactions,
   deleteTransaction,
@@ -58,11 +59,16 @@ export default function TransactionList({
                   <div
                     className={`transaction-category ${transaction.amount > 0 ? "trend-up" : "trend-down"}`}
                   >
-                    {categoryIcons[transaction.category]}
+                    {categories.map((category) =>
+                      category.title === transaction.category
+                        ? category.icon
+                        : null,
+                    )}
+                    {/* {categoryIcons[transaction.category]} */}
                   </div>
                   <div className="transaction-description">
                     <div className="description-title">
-                      {transaction.description}{" "}
+                      {transaction.description}
                     </div>
                     <div className="description-date">
                       <i>{transaction.date ? transaction.date : "No Date"}</i>

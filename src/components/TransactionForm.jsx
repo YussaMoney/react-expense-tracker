@@ -34,11 +34,13 @@ export default function TransactionForm({
       />
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
         {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
+          <option key={category.title} value={category.title}>
+            <span>{category.icon}</span>
+            {category.title}
           </option>
         ))}
       </select>
+
       <motion.button
         type="button"
         onClick={editingTransaction ? updateTransaction : addTransaction}

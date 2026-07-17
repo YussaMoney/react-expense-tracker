@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 function App() {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("Others");
+  const [category, setCategory] = useState("Other");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("Newest");
@@ -32,7 +32,7 @@ function App() {
   function resetForm() {
     setDescription("");
     setAmount("");
-    setCategory("Others");
+    setCategory("Other");
   }
 
   function addTransaction() {
@@ -147,13 +147,13 @@ function App() {
           editingTransaction={editingTransaction}
           updateTransaction={updateTransaction}
         />
+
+        <DashboardStats transactions={transactions} />
         <SearchBar search={search} setSearch={setSearch} />
         <CategoryFilter
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-
-        <DashboardStats transactions={transactions} />
         <SortedDropdown sortBy={sortBy} setSortBy={setSortBy} />
         <TransactionList
           transactions={sortedDropdown}

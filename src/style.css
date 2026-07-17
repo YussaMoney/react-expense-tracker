@@ -16,11 +16,12 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-  background-color: black;
+  /* background-color: black; */
+  background: linear-gradient(180deg, #f7fafc, #edf6ff);
 }
 
 .container {
-  width: 100%;
+  width: 70%;
   background: var(--light);
   background: linear-gradient(
     0deg,
@@ -50,7 +51,8 @@ form {
   margin-top: 2rem;
 }
 
-form input {
+select,
+input {
   width: 100%;
   background: white;
   border: none;
@@ -87,8 +89,8 @@ form button {
   transition: all 0.2s ease-in-out;
 }
 
-.summary {
-  margin-top: 2rem;
+.dashboard-stats {
+  margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

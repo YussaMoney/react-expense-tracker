@@ -1,7 +1,8 @@
 export default function SearchBar({ search, setSearch }) {
   return (
-    <div className="searchBar">
+    <div className="search-bar">
       <input
+        className="search-input"
         type="text"
         placeholder="Search transaction..."
         value={search}

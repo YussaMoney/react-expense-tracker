@@ -12,8 +12,9 @@ export default function CategoryFilter({
       <option value="All">All</option>
 
       {categories.map((category) => (
-        <option key={category} value={category}>
-          {category}
+        <option key={category.title} value={category.title}>
+          <span>{category.icon}</span>
+          {category.title}
         </option>
       ))}
     </select>
