@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../src/style.css";
 import TransactionList from "./components/TransactionList";
-import Summary from "./components/Summary";
+import DashboardStats from "./components/DashboardStats";
 import TransactionForm from "./components/TransactionForm";
 import SearchBar from "./components/SearchBar";
 import CategoryFilter from "./components/CategoryFilter";
@@ -152,7 +152,8 @@ function App() {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        <Summary transactions={transactions} />
+
+        <DashboardStats transactions={transactions} />
         <SortedDropdown sortBy={sortBy} setSortBy={setSortBy} />
         <TransactionList
           transactions={sortedDropdown}
