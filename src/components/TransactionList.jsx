@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
 import categoryIcons from "../data/categoryIcons";
+import { transactionVariants, listVariants } from "../data/variantsMotion";
 export default function TransactionList({
   transactions,
   deleteTransaction,
@@ -11,7 +12,12 @@ export default function TransactionList({
   return (
     <section>
       <h2 className="history">Transaction History</h2>
-      <ul className="transaction-list">
+      <motion.ul
+        variants={listVariants}
+        initial="hidden"
+        animate="visible"
+        className="transaction-list"
+      >
         {totalTransactions === 0 ? (
           <p>
             📄 <br />
@@ -33,10 +39,16 @@ export default function TransactionList({
           <AnimatePresence>
             {transactions.map((transaction) => (
               <motion.li
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                exit={{ opacity: 0, x: 100 }}
+                layout
+                variants={transactionVariants}
+                whileHover={{
+                  y: -4,
+                  scale: 1.01,
+                }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, x: 30 }}
                 key={transaction.id}
                 className={`transaction-item ${
                   transaction.amount > 0 ? "income" : "expense"
@@ -88,7 +100,7 @@ export default function TransactionList({
             ))}
           </AnimatePresence>
         )}
-      </ul>
+      </motion.ul>
     </section>
   );
 }

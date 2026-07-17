@@ -1,4 +1,5 @@
 import categories from "../data/categories";
+import { motion } from "framer-motion";
 export default function TransactionForm({
   description,
   amount,
@@ -38,12 +39,15 @@ export default function TransactionForm({
           </option>
         ))}
       </select>
-      <button
+      <motion.button
         type="button"
         onClick={editingTransaction ? updateTransaction : addTransaction}
+        whileHover={{ scale: 1.02, y: -2 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ duration: 0.2 }}
       >
         {editingTransaction ? "Update Transaction" : "Add Transaction"}
-      </button>
+      </motion.button>
     </form>
   );
 }
