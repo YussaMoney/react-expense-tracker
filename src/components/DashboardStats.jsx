@@ -12,7 +12,7 @@ export default function DashboardStats({ transactions }) {
   let balance = income + expense;
 
   return (
-    <section className="dashboard-stats">
+    <section className="dashboard-stats box">
       <StatCard
         title="Income"
         icon={<TrendingUp className="icon trend-up" />}

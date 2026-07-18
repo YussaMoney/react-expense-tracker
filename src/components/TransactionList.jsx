@@ -11,7 +11,7 @@ export default function TransactionList({
   totalTransactions,
 }) {
   return (
-    <section>
+    <section className="box">
       <h2 className="history">Transaction History</h2>
       <motion.ul
         variants={listVariants}

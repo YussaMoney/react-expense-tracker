@@ -149,12 +149,14 @@ function App() {
         />
 
         <DashboardStats transactions={transactions} />
-        <SearchBar search={search} setSearch={setSearch} />
-        <CategoryFilter
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-        <SortedDropdown sortBy={sortBy} setSortBy={setSortBy} />
+        <div className="flex-container">
+          <SearchBar search={search} setSearch={setSearch} />
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+          <SortedDropdown sortBy={sortBy} setSortBy={setSortBy} />
+        </div>
         <TransactionList
           transactions={sortedDropdown}
           totalTransactions={transactions.length}

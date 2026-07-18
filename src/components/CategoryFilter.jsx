@@ -6,6 +6,7 @@ export default function CategoryFilter({
 }) {
   return (
     <select
+      className="category-filter"
       value={selectedCategory}
       onChange={(e) => setSelectedCategory(e.target.value)}
     >
@@ -13,8 +14,7 @@ export default function CategoryFilter({
 
       {categories.map((category) => (
         <option key={category.title} value={category.title}>
-          <span>{category.icon}</span>
-          {category.title}
+          {category.icon} {category.title}
         </option>
       ))}
     </select>
