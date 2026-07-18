@@ -26,8 +26,11 @@ body {
 
 .container {
   width: 100%;
-
-  padding: 1rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 5%;
 }
 
 .heading {
@@ -72,19 +75,6 @@ input:focus {
 
 input::placeholder {
   color: rgb(170, 170, 170);
-}
-
-select.category-filter {
-  width: 25%;
-}
-
-select.sort-dropdown {
-  width: 25%;
-}
-
-.search-bar {
-  width: 100%;
-  flex: 1;
 }
 
 form button {
@@ -159,9 +149,17 @@ form button {
 
 .flex-container {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+}
+
+select.category-filter {
+  width: 50%;
+}
+
+select.sort-dropdown {
+  width: 50%;
 }
 
 .card {

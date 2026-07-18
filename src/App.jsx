@@ -149,8 +149,8 @@ function App() {
         />
 
         <DashboardStats transactions={transactions} />
+        <SearchBar search={search} setSearch={setSearch} />
         <div className="flex-container">
-          <SearchBar search={search} setSearch={setSearch} />
           <CategoryFilter
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
