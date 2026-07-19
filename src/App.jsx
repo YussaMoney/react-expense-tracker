@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import "../src/style.css";
-import TransactionList from "./components/TransactionList";
+import TransactionList from "./components/Transactions/TransactionList";
 import DashboardStats from "./components/DashboardStats";
 import TransactionForm from "./components/TransactionForm";
-import SearchBar from "./components/SearchBar";
-import CategoryFilter from "./components/CategoryFilter";
-import SortedDropdown from "./components/SortedDropdown";
+// import SearchBar from "./components/SearchBar";
+// import CategoryFilter from "./components/CategoryFilter";
+// import SortedDropdown from "./components/SortedDropdown";
 import formatDescription from "./utils/formatDescription";
 import formatDate from "./utils/formatDate";
 import toast from "react-hot-toast";
+import SearchToolbar from "./components/Transactions/SearchToolbar";
 
 function App() {
   const [description, setDescription] = useState("");
@@ -149,14 +150,24 @@ function App() {
         />
 
         <DashboardStats transactions={transactions} />
-        <SearchBar search={search} setSearch={setSearch} />
+        <SearchToolbar
+          search={search}
+          setSearch={setSearch}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+        />
+
+        {/* <SearchBar search={search} setSearch={setSearch} />
         <div className="flex-container">
           <CategoryFilter
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
           <SortedDropdown sortBy={sortBy} setSortBy={setSortBy} />
-        </div>
+        </div> */}
+
         <TransactionList
           transactions={sortedDropdown}
           totalTransactions={transactions.length}

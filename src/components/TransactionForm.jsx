@@ -13,7 +13,7 @@ export default function TransactionForm({
 }) {
   return (
     <form
-      className="form box"
+      className="transaction-form box"
       onSubmit={(e) => {
         e.preventDefault();
       }}
@@ -37,6 +37,7 @@ export default function TransactionForm({
         required
         onChange={(e) => setAmount(e.target.value)}
       />
+
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
         {categories.map((category) => (
           <option key={category.title} value={category.title}>
